@@ -1,5 +1,5 @@
 import { Component, OnInit, Renderer2, ElementRef } from '@angular/core';
-import { faChevronLeft, faChevronRight, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-gallery',
@@ -8,12 +8,29 @@ import { faChevronLeft, faChevronRight, faPlusCircle } from '@fortawesome/free-s
 })
 
 export class GalleryComponent implements OnInit {
-  faChevronLeft = faChevronLeft;
   faPlusCircle = faPlusCircle;
+
+  images: string[] = [
+    'https://unsplash.it/500',
+    'https://unsplash.it/600',
+    'https://unsplash.it/700',
+    'https://unsplash.it/800',
+    'https://unsplash.it/900',
+    'https://unsplash.it/1000',
+    'https://unsplash.it/1100',
+    'https://unsplash.it/1200',
+  ];
+
+  uploadedImage: string | undefined; // Adicionada a propriedade para a imagem
 
   constructor(private renderer: Renderer2, private el: ElementRef) { }
 
   ngOnInit(): void {
+    const localImage = sessionStorage.getItem('uploadedImage');
+    if (localImage) {
+      this.uploadedImage = localImage; // Atribui a imagem da sessionStorage
+    }
+
     const imgWrappers = this.el.nativeElement.querySelectorAll(".img-wrapper");
 
     imgWrappers.forEach((imgWrapper: Element) => {
@@ -53,14 +70,14 @@ export class GalleryComponent implements OnInit {
           overlay.style.alignItems = 'center';
           overlay.style.background = 'rgba(0, 0, 0, 0.7)';
           overlay.style.position = 'absolute';
-          overlay.style.top = '50%'; 
-          overlay.style.left = '50%'; 
-          overlay.style.transform = 'translate(-50%, -50%)'; 
+          overlay.style.top = '50%';
+          overlay.style.left = '50%';
+          overlay.style.transform = 'translate(-50%, -50%)';
           overlay.style.right = '0';
           overlay.style.bottom = '0';
           overlay.style.zIndex = '999';
           overlay.style.borderRadius = '5px';
-          overlay.style.width = '100%'; 
+          overlay.style.width = '100%';
           overlay.style.height = '100%';
           overlay.classList.add('visible');
         }
@@ -71,20 +88,6 @@ export class GalleryComponent implements OnInit {
       overlay.style.display = 'none';
       overlay.classList.remove('visible');
     });
-
-    const prevButtonClicked = () => {
-      const currentImage = document.querySelector("#overlay img") as HTMLElement;
-      if (currentImage) {
-        this.renderer.setStyle(currentImage, 'display', 'none');
-        const currentImageSrc = currentImage.getAttribute("src");
-        const currentImageElement = document.querySelector(`#image-gallery img[src="${currentImageSrc}"]`) as HTMLImageElement;
-        const prevImageElement = currentImageElement?.closest(".image")?.previousElementSibling?.querySelector("img") as HTMLImageElement;
-        if (prevImageElement) {
-          this.renderer.setAttribute(image, 'src', prevImageElement.src);
-          this.renderer.setStyle(image, 'display', 'flex');
-        }
-      }
-    };
 
     this.renderer.listen(document.body, 'click', (event) => {
       if (event.target === overlay) {

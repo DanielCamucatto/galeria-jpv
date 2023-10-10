@@ -19,8 +19,9 @@ export class UploadImageComponent {
 
     this.uploader.onCompleteItem = (item: FileItem, response: string, status: number) => {
       console.log('Upload complete:', item, status);
-      if (status === 200) {
-        this.saveImageToSessionStorage();
+      if (status === 200 && this.imagePreviewUrl) {
+        // Chame a função para converter a imagem em Base64 e salvar na sessionStorage
+        this.convertImageToBase64(this.imagePreviewUrl);
       }
     };
   }
@@ -41,6 +42,31 @@ export class UploadImageComponent {
 
   createObjectURL(file: File): string {
     return URL.createObjectURL(file);
+  }
+
+  convertImageToBase64(imageUrl: string): void {
+    const image = new Image();
+    image.crossOrigin = 'Anonymous'; // Permite o acesso à imagem de domínios diferentes
+  
+    image.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = image.width;
+      canvas.height = image.height;
+  
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
+        ctx.drawImage(image, 0, 0);
+  
+        // Converta a imagem para Base64
+        const base64data = canvas.toDataURL('image/jpeg');
+  
+        // Salve a imagem na sessionStorage
+        sessionStorage.setItem('uploadedImage', base64data);
+        alert('Imagem salva na sessionStorage!');
+      }
+    };
+  
+    image.src = imageUrl;
   }
 
   saveImageToSessionStorage(): void {
