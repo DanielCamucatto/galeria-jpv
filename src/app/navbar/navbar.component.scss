@@ -1,0 +1,108 @@
+/* navbar.component.scss */
+
+.header {
+    background-color: #f59c1a; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  
+      .header-logo {
+        .logo-link {
+          display: flex;
+          align-items: center;
+          text-decoration: none;
+  
+          img {
+            max-height: 80px !important;
+            margin-right: 10px;
+          }
+        }
+      }
+  
+      .header-nav {
+        display: flex;
+        align-items: center;
+  
+        .header-nav-item {
+          margin-right: 20px; 
+  
+          .header-nav-link {
+            text-decoration: none;
+            color: #333; 
+            font-weight: bold;
+  
+            &:hover {
+              color: #fff; 
+            }
+          }
+        }
+      }
+  
+      .header-mobile-nav-toggler {
+        display: none; 
+      }
+    }
+  }
+  
+  @media (max-width: 768px) {
+   
+    
+    .header {
+      .container {
+        .header-nav {
+          display: none; 
+        }
+  
+        .header-mobile-nav-toggler {
+          display: block; 
+          cursor: pointer;
+  
+          .header-mobile-nav-toggler-icon {
+            width: 30px;
+            height: 3px;
+            background-color: #333; 
+            margin: 6px 0;
+            transition: background-color 0.3s;
+  
+            &::before,
+            &::after {
+              content: '';
+              display: block;
+              width: 30px;
+              height: 3px;
+              background-color: #333; 
+              margin: 6px 0;
+              transition: background-color 0.3s;
+            }
+          }
+  
+          &:hover {
+            .header-mobile-nav-toggler-icon {
+              background-color: #fff; 
+            }
+          }
+        }
+  
+        &.menu-open {
+          .header-nav {
+            display: block; 
+          }
+  
+          .header-mobile-nav-toggler {
+            .header-mobile-nav-toggler-icon {
+              background-color: #fff; 
+            }
+  
+            &::before,
+            &::after {
+              background-color: #fff; 
+            }
+          }
+        }
+      }
+    }
+  }
+  

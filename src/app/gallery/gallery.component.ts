@@ -72,24 +72,6 @@ export class GalleryComponent implements OnInit {
       overlay.classList.remove('visible');
     });
 
-    const nextButtonClicked = () => {
-      const currentImage = document.querySelector("#overlay img") as HTMLElement;
-      if (currentImage) {
-        this.renderer.setStyle(currentImage, 'display', 'none');
-        const currentImageSrc = currentImage.getAttribute("src");
-        const currentImageElement = document.querySelector(`#image-gallery img[src="${currentImageSrc}"]`) as HTMLImageElement;
-        const nextImageElement = currentImageElement?.closest(".image")?.nextElementSibling?.querySelector("img") as HTMLImageElement;
-        const images = document.querySelectorAll("#image-gallery img");
-        if (nextImageElement) {
-          this.renderer.setAttribute(image, 'src', nextImageElement.src);
-          this.renderer.setStyle(image, 'display', 'block');
-        } else {
-          this.renderer.setAttribute(image, 'src', (images[0] as HTMLImageElement).src);
-          this.renderer.setStyle(image, 'display', 'flex');
-        }
-      }
-    };
-
     const prevButtonClicked = () => {
       const currentImage = document.querySelector("#overlay img") as HTMLElement;
       if (currentImage) {

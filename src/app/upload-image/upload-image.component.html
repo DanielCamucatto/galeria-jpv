@@ -1,0 +1,12 @@
+<div class="upload-container">
+  <h2 class="upload-header">Upload de Imagem</h2>
+  <label class="custom-file-upload">
+    Escolher Arquivo
+    <input type="file" (change)="onFileSelected($event)" />
+  </label>
+  <p class="selected-file">{{ selectedFileName }}</p>
+
+  <div *ngIf="imagePreviewUrl" class="image-preview">
+    <img [src]="imagePreviewUrl" alt="Uploaded Image" class="uploaded-image">
+  </div>
+</div>

@@ -1,0 +1,11 @@
+.upload-section {
+    margin-top: 20px;
+}
+.back {
+    color: #f59c1a;
+    margin: 2rem;
+
+    &:hover {
+        color: darken(#f59c1a, 20%);
+    }
+}
