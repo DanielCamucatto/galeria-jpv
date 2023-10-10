@@ -7,9 +7,9 @@ import { FileUploader, FileItem } from 'ng2-file-upload';
   styleUrls: ['../app.component.scss']
 })
 export class UploadImageComponent {
-  public uploader: FileUploader = new FileUploader({ url: 'your-upload-url' }); // Replace with your upload URL
+  public uploader: FileUploader = new FileUploader({ url: 'your-upload-url' });
   public imagePreviewUrl: string | undefined;
-selectedFileName: any;
+  selectedFileName: any;
 
   constructor() {
     this.uploader.onAfterAddingFile = (item: FileItem) => {
@@ -19,7 +19,9 @@ selectedFileName: any;
 
     this.uploader.onCompleteItem = (item: FileItem, response: string, status: number) => {
       console.log('Upload complete:', item, status);
-      // Handle the response from the server here if needed
+      if (status === 200) {
+        this.saveImageToSessionStorage();
+      }
     };
   }
 
@@ -39,5 +41,13 @@ selectedFileName: any;
 
   createObjectURL(file: File): string {
     return URL.createObjectURL(file);
+  }
+
+  saveImageToSessionStorage(): void {
+    if (this.imagePreviewUrl) {
+      // Converte a imagem em base64 e salva na sessionStorage
+      sessionStorage.setItem('uploadedImage', this.imagePreviewUrl);
+      alert('Imagem salva na sessionStorage!');
+    }
   }
 }

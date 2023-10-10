@@ -9,4 +9,6 @@
   <div *ngIf="imagePreviewUrl" class="image-preview">
     <img [src]="imagePreviewUrl" alt="Uploaded Image" class="uploaded-image">
   </div>
+
+  <button (click)="saveImageToSessionStorage()" class="save-button">Salvar na sessionStorage</button>
 </div>
