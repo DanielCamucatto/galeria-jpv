@@ -1,17 +1,92 @@
 <section id="gallery">
     <div class="container">
-      <h1 class="title">GALERIA JPV</h1>
-      <img *ngIf="uploadedImage" [src]="uploadedImage" alt="Uploaded Image">
+        <h1 class="title">GALERIA JPV</h1>
+        <div *ngIf="uploadedImage" class="uploaded">
+            <img [src]="uploadedImage" alt="Uploaded Image">
+        </div>
       <div id="image-gallery" class="grid-container">
-        <div class="image" *ngFor="let imageUrl of images">
+        <div class="image">
           <div class="img-wrapper">
-            <a [href]="imageUrl"><img [src]="imageUrl" class="img-responsive"></a>
+            <a href="https://unsplash.it/100"><img src="https://unsplash.it/100" class="img-responsive"></a>
             <div class="img-overlay">
               <fa-icon [icon]="faPlusCircle"></fa-icon>
             </div>
             <div class="caption">Clique aqui para ver a imagem maior</div>
           </div>
         </div>
+        <div class="image">
+          <div class="img-wrapper">
+            <a href="https://unsplash.it/200"><img src="https://unsplash.it/200" class="img-responsive"></a>
+            <div class="img-overlay">
+             <fa-icon [icon]="faPlusCircle"></fa-icon>
+            </div>
+            <div class="caption">Clique aqui para ver a imagem maior</div>
+          </div>
+        </div>
+        <div class="image">
+          <div class="img-wrapper">
+            <a href="https://unsplash.it/300"><img src="https://unsplash.it/300" class="img-responsive"></a>
+            <div class="img-overlay">
+              <fa-icon [icon]="faPlusCircle"></fa-icon>
+            </div>
+            <div class="caption">Clique aqui para ver a imagem maior</div>
+          </div>
+        </div>
+        <div class="image">
+            <div class="img-wrapper">
+              <a href="https://unsplash.it/400"><img src="https://unsplash.it/400" class="img-responsive"></a>
+              <div class="img-overlay">
+                <fa-icon [icon]="faPlusCircle"></fa-icon>
+              </div>
+              <div class="caption">Clique aqui para ver a imagem maior</div>
+            </div>
+          </div>
+          <div class="image">
+            <div class="img-wrapper">
+              <a href="https://unsplash.it/500"><img src="https://unsplash.it/500" class="img-responsive"></a>
+              <div class="img-overlay">
+                <fa-icon [icon]="faPlusCircle"></fa-icon>
+              </div>
+              <div class="caption">Clique aqui para ver a imagem maior</div>
+            </div>
+          </div>
+          <div class="image">
+            <div class="img-wrapper">
+              <a href="https://unsplash.it/600"><img src="https://unsplash.it/600" class="img-responsive"></a>
+              <div class="img-overlay">
+                <fa-icon [icon]="faPlusCircle"></fa-icon>
+              </div>
+              <div class="caption">Clique aqui para ver a imagem maior</div>
+            </div>
+          </div>
+          <div class="image">
+            <div class="img-wrapper">
+              <a href="https://unsplash.it/700"><img src="https://unsplash.it/700" class="img-responsive"></a>
+              <div class="img-overlay">
+                <fa-icon [icon]="faPlusCircle"></fa-icon>
+              </div>
+              <div class="caption">Clique aqui para ver a imagem maior</div>
+            </div>
+          </div>
+          <div class="image">
+            <div class="img-wrapper">
+              <a href="https://unsplash.it/800"><img src="https://unsplash.it/800" class="img-responsive"></a>
+              <div class="img-overlay">
+                <fa-icon [icon]="faPlusCircle"></fa-icon>
+              </div>
+              <div class="caption">Clique aqui para ver a imagem maior</div>
+            </div>
+          </div>
+          <div class="image">
+            <div class="img-wrapper">
+              <a href="https://unsplash.it/900"><img src="https://unsplash.it/900" class="img-responsive"></a>
+              <div class="img-overlay">
+                <fa-icon [icon]="faPlusCircle"></fa-icon>
+              </div>
+              <div class="caption">Clique aqui para ver a imagem maior</div>
+            </div>
+          </div>
       </div>
-    </div>
+    </div> 
   </section>
+  

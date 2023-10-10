@@ -21,14 +21,14 @@ export class GalleryComponent implements OnInit {
     'https://unsplash.it/1200',
   ];
 
-  uploadedImage: string | undefined; // Adicionada a propriedade para a imagem
+  uploadedImage: string | undefined;
 
   constructor(private renderer: Renderer2, private el: ElementRef) { }
 
   ngOnInit(): void {
     const localImage = sessionStorage.getItem('uploadedImage');
     if (localImage) {
-      this.uploadedImage = localImage; // Atribui a imagem da sessionStorage
+      this.uploadedImage = localImage; 
     }
 
     const imgWrappers = this.el.nativeElement.querySelectorAll(".img-wrapper");
@@ -83,6 +83,24 @@ export class GalleryComponent implements OnInit {
         }
       });
     });
+
+    const nextButtonClicked = () => {
+      const currentImage = document.querySelector("#overlay img") as HTMLElement;
+      if (currentImage) {
+        currentImage.style.display = 'none';
+        const currentImageSrc = currentImage.getAttribute("src");
+        const currentImageElement = document.querySelector(`#image-gallery img[src="${currentImageSrc}"]`) as HTMLImageElement;
+        const nextImageElement = currentImageElement?.closest(".image")?.nextElementSibling?.querySelector("img") as HTMLImageElement;
+        const images = document.querySelectorAll("#image-gallery img");
+        if (nextImageElement) {
+          (document.querySelector("#overlay img") as HTMLImageElement).src = nextImageElement.src;
+          (document.querySelector("#overlay img") as HTMLImageElement).style.display = 'block';
+        } else {
+          (document.querySelector("#overlay img") as HTMLImageElement).src = (images[0] as HTMLImageElement).src;
+          (document.querySelector("#overlay img") as HTMLImageElement).style.display = 'block';
+        }
+      }
+    };
 
     this.renderer.listen(overlay, 'click', () => {
       overlay.style.display = 'none';
